@@ -3,8 +3,8 @@ using namespace std;
 typedef long long ll;
 
 ll mul(const string &s) {
-  regex mulRegex(R"(mul\((\d+),(\d+)\))");
-  sregex_iterator it(s.begin(), s.end(), mulRegex);
+  regex mul_pattern(R"(mul\((\d+),(\d+)\))");
+  sregex_iterator it(s.begin(), s.end(), mul_pattern);
   sregex_iterator end;
 
   ll res = 0;
@@ -22,14 +22,14 @@ ll solve_part1(const string &s) { return mul(s); }
 
 ll solve_part2(const string &s) {
   regex split_pattern(R"(don't|do)");
-  sregex_token_iterator splitIt(s.begin(), s.end(), split_pattern, {-1, 0});
+  sregex_token_iterator it(s.begin(), s.end(), split_pattern, {-1, 0});
   sregex_token_iterator end;
 
   ll res = 0;
   bool mul_enabled = true;
 
-  while (splitIt != end) {
-    string input = *splitIt++;
+  while (it != end) {
+    string input = *it++;
     if (input == "do") {
       mul_enabled = true;
     } else if (input == "don't") {
