@@ -10,8 +10,8 @@ ll mul(const string &s) {
   ll res = 0;
   while (it != end) {
     smatch match = *it;
-    int a = stoi(match[1].str());
-    int b = stoi(match[2].str());
+    int a = stoi(match[1]);
+    int b = stoi(match[2]);
     res += (ll)a * b;
     ++it;
   }
